@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		598730932B2766BA00C1EAF7 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598730922B2766BA00C1EAF7 /* String+Extension.swift */; };
 		599BC9CC2B20F22E00D3AE13 /* MoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599BC9CB2B20F22E00D3AE13 /* MoviesApp.swift */; };
 		599BC9CE2B20F22E00D3AE13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599BC9CD2B20F22E00D3AE13 /* ContentView.swift */; };
 		599BC9D02B20F23100D3AE13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 599BC9CF2B20F23100D3AE13 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		598730922B2766BA00C1EAF7 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		599BC9C82B20F22E00D3AE13 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		599BC9CB2B20F22E00D3AE13 /* MoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesApp.swift; sourceTree = "<group>"; };
 		599BC9CD2B20F22E00D3AE13 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			children = (
 				599BCA0D2B24549800D3AE13 /* View+Extension.swift */,
 				599BCA132B25D5E600D3AE13 /* Array+Extension.swift */,
+				598730922B2766BA00C1EAF7 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				599BC9EC2B21BE2500D3AE13 /* MovieDetailView.swift in Sources */,
 				599BC9DD2B210ED600D3AE13 /* MoviesEntity.swift in Sources */,
 				599BC9FB2B21D2F300D3AE13 /* MoviesRoute.swift in Sources */,
+				598730932B2766BA00C1EAF7 /* String+Extension.swift in Sources */,
 				599BC9F32B21CCF900D3AE13 /* NetworkRequestError.swift in Sources */,
 				599BC9E02B21128B00D3AE13 /* MovieCell.swift in Sources */,
 				599BC9EF2B21C7B600D3AE13 /* NetworkService.swift in Sources */,

@@ -8,22 +8,43 @@
 import SwiftUI
 
 struct MovieCell: View {
-    let movie: MovieEntity
+    private let movie: MovieEntity
+    private var countOccurrenceCharacter: String? {
+        guard let title = movie.title else {
+            return nil
+        }
+        return getCountOccurrenceCharacter(from: title)
+    }
+    
+    init(movie: MovieEntity) {
+        self.movie = movie
+    }
     
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            image
-            gradient
-            title
+        VStack(spacing: 8) {
+            ZStack(alignment: .bottomLeading) {
+                image
+                gradient
+                title
+            }
+            .frame(width: 200, height: 300)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .overlay(
+                border
+            )
+            .overlay {
+                circularProgressView
+            }
+            
+            badge
         }
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(.gray, lineWidth: 1)
-                .opacity(0.4)
-        )
-        .overlay {
-            circularProgressView
+        .frame(width: 200)
+    }
+    
+    @ViewBuilder
+    private var circularProgressView: some View {
+        if let average = movie.average {
+            CircularProgressView(value: average)
                 .padding(.top, 8)
                 .padding(.trailing, 6)
                 .frame(
@@ -32,14 +53,12 @@ struct MovieCell: View {
                     alignment: .topTrailing
                 )
         }
-        .frame(width: 200, height: 300)
     }
     
-    @ViewBuilder
-    private var circularProgressView: some View {
-        if let average = movie.average {
-            CircularProgressView(value: average)
-        }
+    private var border: some View {
+        RoundedRectangle(cornerRadius: 8)
+            .stroke(.gray, lineWidth: 1)
+            .opacity(0.4)
     }
     
     @ViewBuilder
@@ -57,6 +76,27 @@ struct MovieCell: View {
             .frame(width: 200, height: 300)
         } else {
             imagePlaceholder
+        }
+    }
+    
+    @ViewBuilder
+    private var badge: some View {
+        if let result = countOccurrenceCharacter {
+            HStack {
+                Text("\(result)")
+                    .font(.headline)
+                    .multilineTextAlignment(.leading)
+                    .foregroundStyle(.white)
+                    .padding(10)
+                    .frame(maxWidth: .infinity)
+            }
+            .background(
+                Color(.greenLight).opacity(0.5)
+                    .blur(radius: 5)
+            )
+            .clipShape(
+                RoundedRectangle(cornerRadius: 8)
+            )
         }
     }
     
@@ -84,6 +124,20 @@ struct MovieCell: View {
                 .padding(.horizontal, 8)
                 .padding(.bottom, 8)
         }
+    }
+    
+    private func getCountOccurrenceCharacter(from string: String) -> String {
+        let chars = string.map { $0 }
+        var tempDict = [String: String]()
+        
+        chars.forEach { char in
+            let result = string.count(of: char)
+            tempDict["\(char)"] = "\(result)"
+        }
+        
+        return tempDict.sorted(by: { $0.key < $1.key }).map {
+            $0 == " " ? "space:\($1)" : "\($0):\($1)"
+        }.joined(separator: ", ")
     }
 }
 
