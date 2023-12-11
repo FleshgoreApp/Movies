@@ -9,12 +9,6 @@ import SwiftUI
 
 struct MovieCell: View {
     private let movie: MovieEntity
-    private var countOccurrenceCharacter: String? {
-        guard let title = movie.title else {
-            return nil
-        }
-        return getCountOccurrenceCharacter(from: title)
-    }
     
     init(movie: MovieEntity) {
         self.movie = movie
@@ -81,22 +75,8 @@ struct MovieCell: View {
     
     @ViewBuilder
     private var badge: some View {
-        if let result = countOccurrenceCharacter {
-            HStack {
-                Text("\(result)")
-                    .font(.headline)
-                    .multilineTextAlignment(.leading)
-                    .foregroundStyle(.white)
-                    .padding(10)
-                    .frame(maxWidth: .infinity)
-            }
-            .background(
-                Color(.greenLight).opacity(0.5)
-                    .blur(radius: 5)
-            )
-            .clipShape(
-                RoundedRectangle(cornerRadius: 8)
-            )
+        if let result = movie.countOccurrenceCharacter {
+            Badge(text: result)
         }
     }
     
@@ -124,20 +104,6 @@ struct MovieCell: View {
                 .padding(.horizontal, 8)
                 .padding(.bottom, 8)
         }
-    }
-    
-    private func getCountOccurrenceCharacter(from string: String) -> String {
-        let chars = string.map { $0 }
-        var tempDict = [String: String]()
-        
-        chars.forEach { char in
-            let result = string.count(of: char)
-            tempDict["\(char)"] = "\(result)"
-        }
-        
-        return tempDict.sorted(by: { $0.key < $1.key }).map {
-            $0 == " " ? "space:\($1)" : "\($0):\($1)"
-        }.joined(separator: ", ")
     }
 }
 

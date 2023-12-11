@@ -21,6 +21,10 @@ struct MovieDetailView: View {
                     )
                     .padding(.top, 12)
                 
+                badge
+                    .padding(.horizontal, 15)
+                    .padding(.top, 10)
+                
                 description
                     .padding(.horizontal, 15)
             }
@@ -30,12 +34,19 @@ struct MovieDetailView: View {
     }
     
     @ViewBuilder
+    private var badge: some View {
+        if let result = model.countOccurrenceCharacter {
+            Badge(text: result)
+        }
+    }
+    
+    @ViewBuilder
     private var description: some View {
         VStack(alignment: .leading, spacing: 10) {
             if let title = model.releaseDate {
                 Text(title)
                     .font(.title3.weight(.semibold))
-                    .padding(.top, 15)
+                    .padding(.top, 6)
                 Divider()
             } else {
                 Spacer()

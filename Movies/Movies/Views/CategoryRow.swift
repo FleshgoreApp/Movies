@@ -19,7 +19,7 @@ struct CategoryRow: View {
                 .padding(.top, 5)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: .zero) {
+                LazyHStack(alignment: .top, spacing: .zero) {
                     ForEach(items, id: \.id) { movie in
                         NavigationLink {
                             MovieDetailView(model: movie)
